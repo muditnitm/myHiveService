@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \App\Models\Service::observe(\App\Observers\BookingCacheObserver::class);
+        \App\Models\Staff::observe(\App\Observers\BookingCacheObserver::class);
+        \App\Models\Location::observe(\App\Observers\BookingCacheObserver::class);
     }
 }

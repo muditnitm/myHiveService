@@ -34,6 +34,9 @@ return Application::configure(basePath: dirname(__DIR__))
                     'appointments/{slug}/{appointment?}',
                     'appointment-duration',
                     'appointment-book',
+                    'stripe/appointment-pay-with-stripe',
+                    'paypal/appointment-pay-with-paypal',
+                    'internal/*',
                     ] // Add your routes here
         );
     })
