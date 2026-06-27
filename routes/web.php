@@ -65,7 +65,7 @@ Route::resource('subscribes', SubscribeController::class);
 Route::get('check-service-online-meeting/{businessSlug}', [ServiceController::class, 'checkServiceOnlineMeeting'])->name('check.service.online.meeting');
 
 // for checking online appointment for form layout
-Route::get('check-service-online-meeting-form-layout/{businessSlug}', [ServiceController::class, 'checkServiceOnlineMeetingFormLayout'])->name('check.service.online.meeting');
+Route::get('check-service-online-meeting-form-layout/{businessSlug}', [ServiceController::class, 'checkServiceOnlineMeetingFormLayout'])->name('check.service.online.meeting.form.layout');
 
 // Auth::routes();
 require __DIR__ . '/auth.php';
@@ -378,3 +378,13 @@ Route::get('composer/json',function(){
     }
     return $require . '<br><br><br>' . $repo;
 });
+
+// Booking widget public API
+Route::get('booking-init/{businessId}', [\App\Http\Controllers\BookingInitController::class, 'init'])->name('booking.init');
+
+// Internal endpoints (IP-whitelisted in controller)
+Route::post('internal/provision', [\App\Http\Controllers\InternalController::class, 'provision'])->name('internal.provision');
+Route::post('internal/sso/generate', [\App\Http\Controllers\InternalController::class, 'generateSso'])->name('internal.sso.generate');
+
+// SSO login (from myHive redirect)
+Route::get('sso/{token}', [\App\Http\Controllers\SsoController::class, 'login'])->name('sso.login');
